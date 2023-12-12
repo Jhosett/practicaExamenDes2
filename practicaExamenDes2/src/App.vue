@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const indice = ref(0)
+let indice = ref(0)
 
 const chats = [
   {
@@ -29,6 +29,12 @@ const chats = [
     ]
   }
 ]
+
+function mostrarMensaje(i) {
+  indice.value = i
+  //chats.value[i]
+}
+
 </script>
 
 <template>
@@ -61,7 +67,7 @@ const chats = [
 
       <div>
 
-        <div class="flex bg-gray-700 mr-5 rounded items-center p-3 mb-2">
+        <div class="flex bg-gray-700 mr-5 rounded items-center p-3 mb-2" @click="mostrarMensaje (0)">
           <img class="h-10 w-10 rounded-full ml-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLdHZMPuW6L7WYKZU0yds4Hyf8gfXCEGymuA&usqp=CAU" alt="">
           <div class="ml-3 my-auto">
             <p class="text-gray-300 text-base">Marcos Pérez</p>
@@ -69,7 +75,7 @@ const chats = [
           </div>
         </div>
 
-        <div class="flex bg-gray-700 mr-5 rounded items-center p-3 mb-2">
+        <div class="flex bg-gray-700 mr-5 rounded items-center p-3 mb-2" @click="mostrarMensaje (1)">
           <img class="h-10 w-10 rounded-full ml-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLdHZMPuW6L7WYKZU0yds4Hyf8gfXCEGymuA&usqp=CAU" alt="">
           <div class="ml-3 my-auto">
             <p class="text-gray-300 text-base">Marcos Pérez</p>
@@ -77,7 +83,7 @@ const chats = [
           </div>
         </div>
 
-        <div class="flex bg-gray-700 mr-5 rounded items-center p-3 mb-2">
+        <div class="flex bg-gray-700 mr-5 rounded items-center p-3 mb-2" @click="mostrarMensaje (2)">
           <img class="h-10 w-10 rounded-full ml-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLdHZMPuW6L7WYKZU0yds4Hyf8gfXCEGymuA&usqp=CAU" alt="">
           <div class="ml-3 my-auto">
             <p class="text-gray-300 text-base">Marcos Pérez</p>
@@ -91,9 +97,12 @@ const chats = [
   </div>
 
   <div class="h-[600px] w-[1000px] bg-slate-700">
-    <div>
-      <p></p>
-      <div></div>
+    <div class="ml-5">
+      <p class="text-gray-300 mb-6 text-lg">{{ chats[indice].nombre }}</p>
+      <div class="text-white text-base bg-slate-800 rounded mb-5 mr-5 p-3 border-solid border-gray-400" v-for="(obj,i) in chats[indice].mensajes" :key="i">
+        {{ chats[indice].mensajes[i] }}
+        <p class="ml-[480px] text-gray-500">25/06/2023 10:55am</p>
+      </div>
     </div>
   </div>
 
